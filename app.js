@@ -1,4 +1,4 @@
-const { async } = require("@firebase/util");
+
 const express=require("express")
 const app=express();
 
@@ -8,7 +8,7 @@ app.set('view engine','ejs');
 var admin = require("firebase-admin");
 const path = require("path");
 
-app.set('views',path.join(__dirname,'public/views'))
+app.set('views',path.join(__dirname+'/views'))
 
 const firebaseConfig = {
   "type": "service_account",
@@ -46,9 +46,10 @@ app.get('/monitoring',(req,res)=>{
   res.render('index.ejs',{value:data1});
 })
 
-app.use(express.static(path.join(__dirname+'/public')))
+app.use(express.static(__dirname,""))
 
-app.listen(8080,()=>{
+
+app.listen(3000,()=>{
   console.log('from 8080');
 })
 
